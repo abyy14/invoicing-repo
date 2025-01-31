@@ -52,6 +52,7 @@ export default function Invoice({ invoice }: invoiceProps) {
     try {
       await updateStatusAction(formData);
     } catch (e) {
+      console.log(e)
       setCurrentStatus(originalStatus);
     }
   }

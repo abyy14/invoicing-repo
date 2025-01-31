@@ -2,7 +2,6 @@ import Container from "@/components/Container";
 import { Badge } from "@/components/ui/badge";
 import { Customers, Invoices } from "@/db/schema";
 import { cn } from "@/lib/utils";
-import { auth } from "@clerk/nextjs/server";
 import { db } from "@/db";
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
@@ -51,7 +50,7 @@ export default async function Invoice({
     }
    
   }
-  let [result] = await db
+  const [result] = await db
     .select({
       id: Invoices.id,
       status: Invoices.status,

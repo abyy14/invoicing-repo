@@ -12,7 +12,7 @@ export default async function InvoicePage({
 }) {
   const { userId, orgId } = await auth();
   if (!userId) return;
-  const { invoiceId } = await params;
+  const { invoiceId } = params;
   if (isNaN(parseInt(invoiceId))) {
     throw new Error("Invalid Invoice ID");
   }
