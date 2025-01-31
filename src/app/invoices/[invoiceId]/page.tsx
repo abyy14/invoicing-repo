@@ -5,14 +5,16 @@ import { and, eq, isNull } from "drizzle-orm";
 import { notFound } from "next/navigation";
 import Invoice from "./Invoice";
 
+type Params = Promise<{ invoiceId: string }>;
+
 export default async function InvoicePage({
   params,
 }: {
-  params: { invoiceId: string };
+  params: Params;
 }) {
   const { userId, orgId } = await auth();
   if (!userId) return;
-  const { invoiceId } = params;
+  const { invoiceId } = await params;
   if (isNaN(parseInt(invoiceId))) {
     throw new Error("Invalid Invoice ID");
   }
